@@ -1,0 +1,194 @@
+---
+import { Cpu, ShieldCheck, UserCheck, Video, Users, Award } from 'lucide-astro';
+
+const { lang = 'id' } = Astro.props;
+const isId = lang === 'id';
+
+const content = {
+  title: isId ? 'Mengapa Memilih Kami?' : 'Why Choose Us?',
+  desc: isId 
+    ? 'Berkiprah sejak tahun 2004 (lebih dari 18 tahun pengalaman) dengan legalitas lengkap yang terdaftar resmi di sistem OSS dan Mabes Polri.'
+    : 'Operating since 2004 (over 18 years of experience) with complete legality officially registered in the OSS system and the National Police Headquarters.',
+  pillars: [
+    {
+      icon: Cpu,
+      title: isId ? 'Berbasis Teknologi' : 'Technology Driven',
+      desc: isId 
+        ? 'Aplikasi absensi internal, laporan patroli digital real-time, dan integrasi Command Center 24/7.'
+        : 'Internal attendance application, real-time digital patrol reports, and 24/7 Command Center integration.'
+    },
+    {
+      icon: ShieldCheck,
+      title: isId ? 'Keamanan Tinggi' : 'High Security',
+      desc: isId 
+        ? 'Penyediaan paket solusi dan konsultasi risiko keamanan komprehensif tanpa biaya tambahan dalam kontrak.'
+        : 'Provision of comprehensive security risk consultation and solution packages at no additional cost in the contract.'
+    },
+    {
+      icon: UserCheck,
+      title: isId ? 'Penjaga Terlatih' : 'Trained Guards',
+      desc: isId 
+        ? 'Sertifikasi wajib berjenjang (Gada Pratama, Gada Madya, Gada Utama) serta rutinitas Latihan Bina Fisik Mental.'
+        : 'Mandatory tiered certification (Gada Pratama, Madya, Utama) and routine Physical and Mental Training.'
+    },
+    {
+      icon: Video,
+      title: isId ? 'Peralatan Terbaru' : 'Latest Equipment',
+      desc: isId 
+        ? 'Dukungan integrasi sistem CCTV pintar, alarm peringatan dini, face recognition, dan aplikasi e-Visitor.'
+        : 'Integration support for smart CCTV systems, early warning alarms, face recognition, and e-Visitor applications.'
+    },
+    {
+      icon: Users,
+      title: isId ? 'SDM Berkualitas' : 'Quality Human Resources',
+      desc: isId 
+        ? 'Seleksi ketat melalui proses Medical Check Up berkala dan evaluasi komprehensif via Performance Management System.'
+        : 'Strict selection through periodic Medical Check-Ups and comprehensive evaluation via Performance Management System.'
+    },
+    {
+      icon: Award,
+      title: isId ? 'Sertifikasi Internasional' : 'International Certification',
+      desc: isId 
+        ? 'Kepemilikan standar mutu resmi ISO 9001:2015, ISO 14001:2015, ISO 45001:2018, dan SMK3.'
+        : 'Official quality standards ownership of ISO 9001:2015, ISO 14001:2015, ISO 45001:2018, and SMK3.'
+    }
+  ],
+  partnersTitle: isId ? 'Klien Kami' : 'Our Clients',
+  partners: [
+    { name: 'ADHI Persada Properti', logo: '/images/logo klien/ADHI Persada Properti.png' },
+    { name: 'DABN Port Services', logo: '/images/logo klien/DABN Port Services.png' },
+    { name: 'Easton Park Residence', logo: '/images/logo klien/Easton Park Residence.png' },
+    { name: 'Institut Pertanian Bogor', logo: '/images/logo klien/Institut Pertanian Bogor.png' },
+    { name: 'Kementrian ESDM', logo: '/images/logo klien/Kementrian ESDM.png' },
+    { name: 'Pasar Jaya', logo: '/images/logo klien/Pasar Jaya.png' },
+    { name: 'Tjiwi Kimia', logo: '/images/logo klien/Tjiwi Kimia.png' },
+    { name: 'Uniqlo', logo: '/images/logo klien/Uniqlo.png' },
+    { name: 'Universitas Islam Internasional Indonesia', logo: '/images/logo klien/Universitas Islam Internasional Indonesia.png' },
+    { name: 'WIKA BETON', logo: '/images/logo klien/WIKA BETON.png' }
+  ]
+};
+---
+
+<section id="why-us" class="py-20 bg-light">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold font-heading text-dark mb-4">
+        {content.title}
+      </h2>
+      <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto font-medium">
+        {content.desc}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+      {content.pillars.map((pillar) => {
+        const IconComponent = pillar.icon;
+        return (
+          <div class="flex flex-col bg-white p-8 rounded-lg border border-gray-100 shadow-sm hover:border-primary/30 transition-colors">
+            <div class="w-12 h-12 bg-light rounded-full flex items-center justify-center mb-6">
+              <IconComponent class="w-6 h-6 text-primary" />
+            </div>
+            <h3 class="text-xl font-bold font-heading text-dark mb-3">
+              {pillar.title}
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              {pillar.desc}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+
+    {/* Clients Carousel */}
+    <div class="pt-12 border-t border-gray-200">
+      <p class="text-center text-sm font-bold text-gray-500 uppercase tracking-widest mb-8">
+        {content.partnersTitle}
+      </p>
+      
+      <div class="relative px-4 sm:px-8">
+        {/* Carousel Viewport */}
+        <div id="clients-carousel" class="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-6 pb-4 scroll-smooth items-center">
+          {content.partners.map((partner) => (
+            <div class="snap-start shrink-0 w-[calc(50%-12px)] sm:w-[calc(33.333%-16px)] md:w-[calc(25%-18px)] lg:w-[calc(16.666%-20px)] h-20 flex items-center justify-center p-2">
+              <img 
+                src={partner.logo} 
+                alt={partner.name} 
+                class="max-w-full max-h-full object-contain transition-transform duration-300 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Navigation Buttons */}
+        <button 
+          id="clients-prev" 
+          class="absolute left-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-white hover:bg-gray-50 text-primary border border-gray-100 rounded-full shadow-lg flex items-center justify-center z-10 transition-all focus:outline-none focus:ring-2 focus:ring-accent" 
+          aria-label="Previous client"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+        </button>
+        <button 
+          id="clients-next" 
+          class="absolute right-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-white hover:bg-gray-50 text-primary border border-gray-100 rounded-full shadow-lg flex items-center justify-center z-10 transition-all focus:outline-none focus:ring-2 focus:ring-accent" 
+          aria-label="Next client"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  const setupClientsCarousel = (carouselId, prevBtnId, nextBtnId) => {
+    const carousel = document.getElementById(carouselId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
+
+    if (!carousel || !prevBtn || !nextBtn) return;
+
+    prevBtn.addEventListener('click', () => {
+      const firstChild = carousel.firstElementChild;
+      if (firstChild) {
+        const scrollLeft = carousel.scrollLeft;
+        const itemWidth = firstChild.getBoundingClientRect().width + 24; // width + gap
+        if (scrollLeft <= 10) {
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+          carousel.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        } else {
+          carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+        }
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const firstChild = carousel.firstElementChild;
+      if (firstChild) {
+        const scrollLeft = carousel.scrollLeft;
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        const itemWidth = firstChild.getBoundingClientRect().width + 24; // width + gap
+        if (scrollLeft >= maxScroll - 10) {
+          carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
+        }
+      }
+    });
+  };
+
+  setupClientsCarousel('clients-carousel', 'clients-prev', 'clients-next');
+</script>

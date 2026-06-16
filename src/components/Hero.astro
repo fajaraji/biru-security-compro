@@ -1,0 +1,69 @@
+---
+import { ArrowRight, MessageCircle } from 'lucide-astro';
+
+const { lang = 'id' } = Astro.props;
+const isId = lang === 'id';
+
+const waLink = "https://api.whatsapp.com/send/?phone=6281230743984&text&type=phone_number&app_absent=0";
+
+const content = {
+  h1: isId ? 'Solusi Layanan Pengamanan dan Proteksi Aset Terpercaya' : 'EMPOWERING SECURITY TRANSFORMATION',
+  desc: isId 
+    ? 'BIRU Security Services merupakan penyedia jasa keamanan terintegrasi di bawah PT. Bangun Insan Reksa Utama (BIRU). Kami berkomitmen memberikan solusi pengamanan fisik dan berbasis teknologi terbaik untuk melindungi bisnis, aset, serta personel Anda secara menyeluruh.'
+    : 'BIRU Security Services is a leading security provider integrated under PT. Bangun Insan Reksa Utama (BIRU). We commit to delivering excellent physical and technology-driven security solutions to fully protect your business, assets, and personnel.',
+  btnPrimary: isId ? 'Hubungi via WhatsApp' : 'Contact via WhatsApp',
+  btnSecondary: isId ? 'Pelajari Layanan' : 'Learn More'
+};
+---
+
+<section class="relative bg-dark min-h-[80vh] flex items-center overflow-hidden">
+  {/* Background Image with Overlay */}
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="https://www.birusecurity.com/images/welcome.gif" 
+      alt="Security Guard Patrol" 
+      class="w-full h-full object-cover object-center"
+    />
+    <div class="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-dark/90 to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 w-full">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+        {isId ? (
+          <>
+            Solusi Layanan <span class="text-accent">Pengamanan</span> dan Proteksi Aset Terpercaya
+          </>
+        ) : (
+          <>
+            EMPOWERING <span class="text-accent">SECURITY</span> TRANSFORMATION
+          </>
+        )}
+      </h1>
+      
+      <p class="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed">
+        {content.desc}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a 
+          href={waLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-primary rounded-sm hover:bg-accent transition-colors duration-300 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent focus-visible:ring-offset-dark"
+        >
+          <MessageCircle class="w-5 h-5 mr-2" />
+          {content.btnPrimary}
+        </a>
+        <a 
+          href="#services"
+          class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-transparent border-2 border-white rounded-sm hover:bg-white hover:text-dark transition-colors duration-300 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white focus-visible:ring-offset-dark"
+        >
+          {content.btnSecondary}
+          <ArrowRight class="w-5 h-5 ml-2" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

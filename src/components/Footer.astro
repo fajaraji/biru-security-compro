@@ -1,0 +1,99 @@
+---
+import { Instagram, Youtube, MapPin, Mail, Phone, MessageCircle } from 'lucide-astro';
+
+const { lang = 'id' } = Astro.props;
+const isId = lang === 'id';
+
+const currentYear = new Date().getFullYear();
+
+const waLink = "https://api.whatsapp.com/send/?phone=6281230743984&text&type=phone_number&app_absent=0";
+const externalDomain = "https://birufms.com";
+---
+
+<footer id="contact" class="bg-dark text-white pt-16 pb-8 border-t border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      
+      {/* Column 1: Company Info */}
+      <div>
+        <div class="mb-4">
+          <img src="/images/logo biru security.png" alt="BIRU Security Logo" class="h-12 w-auto" />
+        </div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+          {isId 
+            ? 'BIRU Security Services merupakan bagian terintegrasi dari PT. Bangun Insan Reksa Utama (BIRU). Kami menyediakan layanan prima di bidang Facility Management Services.'
+            : 'BIRU Security Services is an integrated part of PT. Bangun Insan Reksa Utama (BIRU). We provide excellent services in Facility Management.'}
+        </p>
+      </div>
+
+      {/* Column 2: Contact Us */}
+      <div>
+        <h3 class="text-lg font-bold font-heading mb-6 text-white uppercase tracking-wider">
+          {isId ? 'Hubungi Kami' : 'Contact Us'}
+        </h3>
+        <ul class="space-y-4 text-sm text-gray-300">
+          <li class="flex items-start">
+            <MapPin class="h-5 w-5 mr-3 text-primary shrink-0 mt-0.5" />
+            <span>
+              Jl. KH. Noer Ali No.8, Jakasampurna, Bekasi Barat, Kota Bekasi, Jawa Barat 17145
+            </span>
+          </li>
+          <li class="flex items-center">
+            <Mail class="h-5 w-5 mr-3 text-primary shrink-0" />
+            <a href="mailto:info@birufms.com" class="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-accent rounded px-1 -ml-1 min-h-[44px] inline-flex items-center">
+              info@birufms.com
+            </a>
+          </li>
+          <li class="flex items-center">
+            <MessageCircle class="h-5 w-5 mr-3 text-primary shrink-0" />
+            <a href={waLink} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-accent rounded px-1 -ml-1 min-h-[44px] inline-flex items-center">
+              WhatsApp (+62 812-3074-3984)
+            </a>
+          </li>
+          <li class="flex items-center">
+            <Phone class="h-5 w-5 mr-3 text-primary shrink-0" />
+            <div class="flex flex-col">
+              <a href="tel:+622121693719" class="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-accent rounded px-1 -ml-1 min-h-[44px] inline-flex items-center">
+                {isId ? 'Kantor' : 'Office'}: +62 21-21693719
+              </a>
+              <a href="tel:+628119517111" class="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-accent rounded px-1 -ml-1 min-h-[44px] inline-flex items-center">
+                {isId ? 'Seluler' : 'Mobile'}: +62 811-9517-111
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      {/* Column 3: Social Media */}
+      <div>
+        <h3 class="text-lg font-bold font-heading mb-6 text-white uppercase tracking-wider">
+          {isId ? 'Media Sosial' : 'Social Media'}
+        </h3>
+        <div class="flex space-x-4">
+          <a 
+            href="https://www.instagram.com/birufms.id/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-gray-400 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary focus-visible:ring-2 focus-visible:ring-accent"
+            aria-label="Instagram"
+          >
+            <Instagram class="h-5 w-5" />
+          </a>
+          <a 
+            href="https://www.youtube.com/channel/UCqTAFPYVGauwxSNqjxEFNoQ" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-gray-400 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary focus-visible:ring-2 focus-visible:ring-accent"
+            aria-label="YouTube"
+          >
+            <Youtube class="h-5 w-5" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 pt-8 mt-8 text-sm text-center text-gray-500">
+      <p>&copy; {currentYear} PT. Bangun Insan Reksa Utama. {isId ? 'Hak Cipta Dilindungi.' : 'All rights reserved.'}</p>
+    </div>
+  </div>
+</footer>

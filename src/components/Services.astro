@@ -1,0 +1,125 @@
+---
+const { lang = 'id' } = Astro.props;
+const isId = lang === 'id';
+
+const content = {
+  title: isId ? 'LAYANAN KAMI' : 'OUR SERVICES',
+  desc: isId ? 'Penyedia Jasa Keamanan terdepan dan outsourcing profesional untuk berbagai sektor industri.' : 'Leading Security Services provider and professional outsourcing for various industrial sectors.',
+  services: [
+    {
+      id: 1,
+      image: '/images/logo card/Security Bank.jpg',
+      title: isId ? 'Security Bank' : 'Bank Security',
+      desc: isId 
+        ? 'Sebagai satpam bank selain menjaga keselamatan nasabah juga keamanan bertransaksi ketika berada di area bank itu sendiri.'
+        : 'As bank security, besides ensuring customer safety, they also secure transactions when within the bank area itself.'
+    },
+    {
+      id: 2,
+      image: '/images/logo card/Security Pabrik.jpg',
+      title: isId ? 'Security Pabrik' : 'Factory Security',
+      desc: isId 
+        ? 'Anggota yang memiliki tugas untuk mengamankan di wilayah pabrik sebaik mungkin dan memastikan asset pabrik aman.'
+        : 'Members whose duty is to secure the factory area as best as possible and ensure factory assets are safe.'
+    },
+    {
+      id: 3,
+      image: '/images/logo card/Security Pasar.jpg',
+      title: isId ? 'Security Pasar' : 'Market Security',
+      desc: isId 
+        ? 'Petugas keamanan pasar yang sudah dilatih untuk memberikan keamanan dan kelancaran giat masyarakat hindari gangguan.'
+        : 'Market security officers trained to provide safety and smooth public activities to avoid any disturbances.'
+    },
+    {
+      id: 4,
+      image: '/images/logo card/Security Hotel dan Apartemen.jpg',
+      title: isId ? 'Security Hotel dan Apartemen' : 'Hotel & Apartment Security',
+      desc: isId 
+        ? 'Setiap anggota memiliki tugas untuk memastikan bahwa setiap tamu hotel dan apartemen yang datang selalu merasa aman selama menginap.'
+        : 'Each member has the duty to ensure that every hotel and apartment guest who comes always feels safe during their stay.'
+    },
+    {
+      id: 5,
+      image: '/images/logo card/Security Tempat Tinggal.jpg',
+      title: isId ? 'Security Tempat Tinggal' : 'Residential Security',
+      desc: isId 
+        ? 'Satpam perumahan sangat membantu dalam hal pengamanan lingkungan. Mereka tidak saja menjaga ketertiban dan keamanan di malam hari, tetapi juga di siang hari.'
+        : 'Residential security is highly helpful in neighborhood security. They maintain order and safety not only at night but also during the day.'
+    },
+    {
+      id: 6,
+      image: '/images/logo card/Security Mall dan Store.jpg',
+      title: isId ? 'Security Mall dan Store' : 'Mall & Store Security',
+      desc: isId 
+        ? 'Menyelenggarakan keamanan dan ketertiban di lingkungan/tempat kerjanya yang meliputi aspek pengamanan fisik, personel, informasi dan pengamanan teknis lainnya.'
+        : 'Organizing security and order in their workplace/environment, covering physical, personnel, information, and other technical security aspects.'
+    },
+    {
+      id: 7,
+      image: '/images/logo card/Security Objek Vital.jpg',
+      title: isId ? 'Security Objek Vital' : 'Vital Object Security',
+      desc: isId 
+        ? 'Penjagaan ketat kawasan strategis, industri krusial, dan fasilitas milik negara dengan tingkat kerawanan tinggi.'
+        : 'Strict guarding of strategic areas, crucial industries, and state-owned facilities with high vulnerability levels.'
+    },
+    {
+      id: 8,
+      image: '/images/logo card/Security Gedung.jpg',
+      title: isId ? 'Security Gedung' : 'Building Security',
+      desc: isId 
+        ? 'Tata kelola keamanan gedung perkantoran, pemeriksaan identitas pengunjung secara berkala, dan penanganan darurat.'
+        : 'Office building security management, regular visitor identity checks, and emergency response.'
+    },
+    {
+      id: 9,
+      image: '/images/logo card/Layanan Fasilitas Lainnya.jpg',
+      title: isId ? 'Layanan Fasilitas Lainnya' : 'Other Facility Services',
+      desc: isId 
+        ? 'Penyedia Jasa Keamanan terdepan dan outsourcing profesional untuk berbagai kebutuhan pendukung bisnis Anda.'
+        : 'Leading Security Services provider and professional outsourcing for various business support needs.'
+    }
+  ]
+};
+---
+
+<section id="services" class="py-20 bg-light">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold font-heading text-primary mb-4">
+        {content.title}
+      </h2>
+      <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+      <p class="text-lg text-muted max-w-2xl mx-auto">
+        {content.desc}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {content.services.map((service) => {
+        return (
+          <div class="flex flex-col bg-primary rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div class="w-full h-48 sm:h-52 md:h-56 overflow-hidden">
+              <img 
+                src={service.image} 
+                alt={service.title} 
+                class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex-grow p-6 md:p-8 flex flex-col justify-center items-center text-center text-white">
+              <h3 class="text-xl md:text-2xl font-bold font-heading mb-4 text-white">
+                {service.title}
+              </h3>
+              <p class="text-sm md:text-base text-white/90 leading-relaxed font-body">
+                {service.desc}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>
+

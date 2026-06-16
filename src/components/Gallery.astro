@@ -1,0 +1,119 @@
+---
+const { lang = 'id' } = Astro.props;
+const isId = lang === 'id';
+
+const content = {
+  title: isId ? 'Galeri Operasional' : 'Operational Gallery',
+  desc: isId 
+    ? 'Aktivitas pelatihan dan pengawasan lapangan personel BIRU Security.'
+    : 'Training activities and field supervision of BIRU Security personnel.',
+  images: [
+    { src: 'https://www.birusecurity.com/images/f32.gif', alt: 'Security Briefing' },
+    { src: 'https://www.birusecurity.com/images/f36.gif', alt: 'Physical Guarding' },
+    { src: 'https://www.birusecurity.com/images/f6.gif', alt: 'Personnel Training' },
+    { src: 'https://www.birusecurity.com/images/f34.gif', alt: 'Security Inspection' },
+    { src: 'https://www.birusecurity.com/images/lat2.gif', alt: 'Bina Fisik & Mental' },
+    { src: 'https://www.birusecurity.com/images/lat4.gif', alt: 'Tactical Defense' },
+    { src: 'https://www.birusecurity.com/images/lat7.gif', alt: 'Operational Readiness' },
+    { src: 'https://www.birusecurity.com/images/f33.gif', alt: 'Control Room Support' },
+    { src: 'https://www.birusecurity.com/images/f35.gif', alt: 'Facility Patrol' },
+    { src: 'https://www.birusecurity.com/images/f23.gif', alt: 'Security Cooperation' }
+  ]
+};
+---
+
+<section id="gallery" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold font-heading text-dark mb-4">
+        {content.title}
+      </h2>
+      <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        {content.desc}
+      </p>
+    </div>
+
+    <div class="relative px-4 sm:px-8">
+      {/* Carousel Container */}
+      <div id="gallery-carousel" class="flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-6 pb-4 scroll-smooth">
+        {content.images.map((img) => (
+          <div class="snap-start shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] aspect-[4/3] relative overflow-hidden rounded-xl bg-gray-100 shadow-sm group">
+            <img 
+              src={img.src} 
+              alt={img.alt} 
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation Buttons */}
+      <button 
+        id="gallery-prev" 
+        class="absolute left-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-white hover:bg-gray-50 text-primary border border-gray-100 rounded-full shadow-lg flex items-center justify-center z-10 transition-all focus:outline-none focus:ring-2 focus:ring-accent" 
+        aria-label="Previous image"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+      </button>
+      <button 
+        id="gallery-next" 
+        class="absolute right-0 top-1/2 -translate-y-1/2 w-11 h-11 bg-white hover:bg-gray-50 text-primary border border-gray-100 rounded-full shadow-lg flex items-center justify-center z-10 transition-all focus:outline-none focus:ring-2 focus:ring-accent" 
+        aria-label="Next image"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  const setupCarousel = (carouselId, prevBtnId, nextBtnId) => {
+    const carousel = document.getElementById(carouselId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
+
+    if (!carousel || !prevBtn || !nextBtn) return;
+
+    prevBtn.addEventListener('click', () => {
+      const firstChild = carousel.firstElementChild;
+      if (firstChild) {
+        const scrollLeft = carousel.scrollLeft;
+        const itemWidth = firstChild.getBoundingClientRect().width + 24; // width + gap
+        if (scrollLeft <= 10) {
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+          carousel.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        } else {
+          carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+        }
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const firstChild = carousel.firstElementChild;
+      if (firstChild) {
+        const scrollLeft = carousel.scrollLeft;
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        const itemWidth = firstChild.getBoundingClientRect().width + 24; // width + gap
+        if (scrollLeft >= maxScroll - 10) {
+          carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
+        }
+      }
+    });
+  };
+
+  setupCarousel('gallery-carousel', 'gallery-prev', 'gallery-next');
+</script>

@@ -1,0 +1,84 @@
+---
+import { Cctv, Server, BellRing, UserCheck, QrCode, Grid } from 'lucide-astro';
+
+const { lang = 'id' } = Astro.props;
+const isId = lang === 'id';
+
+const content = {
+  title: isId ? 'Produk & Sistem Keamanan' : 'Products & Security Systems',
+  desc: isId 
+    ? 'Solusi perangkat keras dan lunak terintegrasi untuk perlindungan maksimal.'
+    : 'Integrated hardware and software solutions for maximum protection.',
+  products: [
+    {
+      icon: Cctv,
+      title: 'CCTV System',
+      desc: isId ? 'Pemantauan visual 24/7 dengan analitik pintar.' : '24/7 visual monitoring with smart analytics.'
+    },
+    {
+      icon: Server,
+      title: 'Barrier Gate',
+      desc: isId ? 'Kontrol akses kendaraan otomatis di gerbang utama.' : 'Automated vehicle access control at main gates.'
+    },
+    {
+      icon: BellRing,
+      title: isId ? 'Sistem Pemantauan Alarm' : 'Alarm Monitoring System',
+      desc: isId ? 'Deteksi dini dan peringatan ancaman secara real-time.' : 'Early detection and real-time threat alerts.'
+    },
+    {
+      icon: UserCheck,
+      title: isId ? 'Sistem Manajemen Pengunjung (e-Visitor)' : 'Visitor Management System (e-Visitor)',
+      desc: isId ? 'Pencatatan dan verifikasi tamu digital yang terintegrasi.' : 'Integrated digital guest logging and verification.'
+    },
+    {
+      icon: QrCode,
+      title: isId ? 'Sistem Patroli Satpam (Scan QR)' : 'Guard Patrol System (QR Scan)',
+      desc: isId ? 'Pelaporan titik patroli akurat melalui pemindaian QR Code.' : 'Accurate patrol point reporting via QR Code scanning.'
+    },
+    {
+      icon: Grid,
+      title: isId ? 'Sistem Keamanan Perimeter' : 'Perimeter Security System',
+      desc: isId ? 'Proteksi lapis pertama di batas luar area operasional.' : 'First layer protection at the outer boundary of operational areas.'
+    }
+  ]
+};
+---
+
+<section id="products" class="py-20 bg-dark text-white relative overflow-hidden">
+  <div class="absolute inset-0 z-0 opacity-10 mix-blend-overlay">
+    <img 
+      src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" 
+      alt="Cyber Background" 
+      class="w-full h-full object-cover"
+    />
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+        {content.title}
+      </h2>
+      <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+        {content.desc}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {content.products.map((product) => {
+        const IconComponent = product.icon;
+        return (
+          <div class="group bg-gray-900 border border-gray-800 p-6 rounded-lg hover:border-primary transition-colors duration-300 flex items-start space-x-4">
+            <div class="w-12 h-12 bg-gray-800 rounded flex-shrink-0 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+              <IconComponent class="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold font-heading mb-2">{product.title}</h3>
+              <p class="text-sm text-gray-400">{product.desc}</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

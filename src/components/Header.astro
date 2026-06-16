@@ -1,0 +1,75 @@
+---
+const { lang = 'id' } = Astro.props;
+
+const isId = lang === 'id';
+const basePath = isId ? '/' : '/en/';
+
+const navLinks = [
+  { name: isId ? 'Tentang Kami' : 'About Us', href: '#about' },
+  { name: isId ? 'Layanan' : 'Services', href: '#services' },
+  { name: isId ? 'Mengapa Kami' : 'Why Us', href: '#why-us' },
+  { name: isId ? 'Produk' : 'Products', href: '#products' },
+  { name: isId ? 'Galeri' : 'Gallery', href: '#gallery' },
+  { name: isId ? 'Kontak' : 'Contact', href: '#contact' },
+];
+
+const waLink = "https://api.whatsapp.com/send/?phone=6281230743984&text&type=phone_number&app_absent=0";
+---
+
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      
+      {/* Logo */}
+      <div class="flex-shrink-0 flex items-center">
+        <a href={basePath} class="focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded">
+          <img src="/images/logo biru security.png" alt="BIRU Security Logo" class="h-10 w-auto" />
+        </a>
+      </div>
+
+      {/* Center Nav */}
+      <nav class="hidden md:flex space-x-8">
+        {navLinks.map((link) => (
+          <a
+            href={`${basePath}${link.href}`}
+            class="text-dark hover:text-primary font-medium transition-colors duration-300 min-h-[44px] min-w-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+          >
+            {link.name}
+          </a>
+        ))}
+      </nav>
+
+      {/* Right Actions */}
+      <div class="flex items-center space-x-4">
+        {/* Language Switcher */}
+        <div class="flex items-center font-bold text-sm">
+          <a 
+            href="/" 
+            class={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${isId ? 'text-primary' : 'text-muted hover:text-dark'}`}
+            aria-label="Bahasa Indonesia"
+          >
+            ID
+          </a>
+          <span class="text-muted">|</span>
+          <a 
+            href="/en/" 
+            class={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${!isId ? 'text-primary' : 'text-muted hover:text-dark'}`}
+            aria-label="English"
+          >
+            EN
+          </a>
+        </div>
+
+        {/* WhatsApp CTA */}
+        <a
+          href={waLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-bold rounded-sm text-white bg-primary hover:bg-opacity-90 hover:bg-accent transition-colors duration-300 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+        >
+          {isId ? 'Hubungi via WhatsApp' : 'Contact via WhatsApp'}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
