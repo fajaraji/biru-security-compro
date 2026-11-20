@@ -1,6 +1,14 @@
 # PT. Bangun Insan Reksa Utama (BIRU) — Security Services Company Profile
 
-A modern, fast, responsive, and fully accessible company profile website for **BIRU Security Services**, a leading security provider integrated under PT. Bangun Insan Reksa Utama (BIRU).
+Bilingual Astro company profile for BIRU Security Services, with services, products, a photo gallery, and Indonesian and English pages.
+
+## Explore the implementation
+
+The site shares section components between its Indonesian and English routes. Start with the route for the language you want to change.
+
+- [Indonesian homepage](src/pages/index.astro)
+- [English homepage](src/pages/en/index.astro)
+- [Services section](src/components/Services.astro)
 
 ## 🚀 Tech Stack
 
@@ -41,7 +49,7 @@ A modern, fast, responsive, and fully accessible company profile website for **B
 └── package.json
 ```
 
-##  Genie Commands
+## Local development
 
 All commands are run from the project root:
 
